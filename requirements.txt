@@ -1,0 +1,7 @@
+# Internet Troubleshooting Agent - dependencies
+# Versions pinned to what is installed and verified on this machine.
+
+langgraph==1.2.11
+langchain-google-genai==4.4.0
+langchain-core==1.6.2
+python-dotenv>=1.0.0

@@ -1,0 +1,9 @@
+# Secrets - never commit the real key. `.env.example` documents the shape.
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/

@@ -1,0 +1,145 @@
+{
+  "_synthetic_notice": "SYNTHETIC DATA - NOT REAL. This document describes a fictional router model for a fictional ISP, generated for an interview practice project. It is not real product documentation and must not be used to service any actual hardware.",
+
+  "doc_id": "KB-RTR-R200",
+  "version": "1.4",
+  "approval_status": "approved",
+  "approved_for_customer_use": true,
+  "last_reviewed": "2026-08-02",
+  "supported_model": "R200",
+
+  "display_name": "HomeLink R200 Dual-Band",
+  "description": "Dual-band home router issued to premium residential plans from 2024 onward. Broadcasts two separate networks (2.4GHz and 5GHz) and includes a companion mobile app.",
+
+  "identification": {
+    "summary": "The R200 is a taller matte-black unit with four small lights in a row on the front and a USB port on the back.",
+    "customer_facing_question": "Could you take a look at your router for me? The R200 is a black upright unit with a row of four small lights across the front, and the model number is on a sticker at the back, starting with 'R200-'. There's also a USB port next to the network ports.",
+    "cues": [
+      "Sticker on the REAR panel (not underneath), model line reads 'R200-HLD' followed by the serial number.",
+      "FOUR small lights in a row on the front, labelled Power, Line, 2.4G and 5G (the R100 has a single round light).",
+      "One detachable antenna that can be unscrewed and angled.",
+      "A blue USB port on the rear panel beside the network ports."
+    ],
+    "distinguishing_from_other_models": "If the customer reports a single round light, fixed antennas, or a sticker on the underside, it is not an R200 - most likely an R100."
+  },
+
+  "known_symptoms": [
+    "No internet on any device, Line light solid amber",
+    "Power light off entirely",
+    "Only one of the two Wi-Fi networks is visible to devices",
+    "Newer devices connect but older devices cannot find the network",
+    "Connection works near the router but drops in other rooms"
+  ],
+
+  "status_light_reference": {
+    "power_white": "Unit has power and has finished starting up.",
+    "power_pulsing_white": "Unit is starting up. Normal for up to 90 seconds.",
+    "line_white": "Provider line is connected and authenticated.",
+    "line_amber": "No signal reaching the router from the provider line.",
+    "line_pulsing_amber": "Line is connected but not yet authenticated.",
+    "band_light_white": "That band (2.4G or 5G) is broadcasting normally.",
+    "band_light_off": "That band is not currently broadcasting."
+  },
+
+  "troubleshooting_steps": [
+    {
+      "step_id": "R200-S1",
+      "title": "Read the four front lights",
+      "order": 1,
+      "applies_when": "Always applicable as a first step. The R200's four lights identify which part of the connection has failed before anything is changed.",
+      "prerequisites": [
+        "Customer is physically near the router and can see the front panel."
+      ],
+      "warnings": [
+        "This step only involves looking at the unit. Nothing should be unplugged yet.",
+        "If the customer reports any burning smell, visible damage, or a hot unit, stop and hand over to a human representative immediately."
+      ],
+      "customer_instruction": "The R200 tells us a lot from its front panel, so let's read it before changing anything. There are four small lights in a row, labelled Power, Line, 2.4G and 5G. Could you tell me the colour of each one, or if any are off completely? White is healthy, amber means a problem, and off means that part isn't active.",
+      "expected_result": "The customer reports the colour or off-state of all four lights.",
+      "result_meanings": {
+        "all_white": "The router is fully healthy. The problem is with a specific device - go to step R200-S4.",
+        "power_off": "No power is reaching the unit. Go to step R200-S2.",
+        "line_amber": "No provider signal is reaching the router. Go to step R200-S3.",
+        "band_light_off": "One Wi-Fi band is not broadcasting. Go to step R200-S4.",
+        "customer_cannot_tell": "If the customer cannot see or describe the lights, do not guess on their behalf - ask a clarifying question, or hand over to a human representative if the lights cannot be read at all."
+      }
+    },
+    {
+      "step_id": "R200-S2",
+      "title": "Power cycle using the rear power button",
+      "order": 2,
+      "applies_when": "The Power light is off, or the Power light is white but the Line light has stayed pulsing amber for more than 3 minutes.",
+      "prerequisites": [
+        "The four front lights have been read (R200-S1), or the customer has already described the router's state."
+      ],
+      "warnings": [
+        "This will briefly disconnect everyone in the home. Mention this before asking the customer to proceed.",
+        "Use the rear POWER button only. Do not press the small recessed RESET pinhole next to it - that performs a full factory reset and is out of scope for this conversation.",
+        "Do not unscrew or remove the antenna during this step."
+      ],
+      "customer_instruction": "Let's restart it properly. Unlike some routers, the R200 has a real power button on the back - press it once to switch the unit off, wait 30 seconds, then press it once more to switch it back on. Please use that button rather than pulling the plug, as it lets the unit shut down cleanly. It takes about 90 seconds to come back, and the Power light will pulse white while it starts. Everyone in the house will drop offline briefly.",
+      "expected_result": "Within about 90 seconds the Power light is solid white and the Line light turns white.",
+      "result_meanings": {
+        "power_and_line_white": "The router has restarted successfully and is online. Ask the customer to confirm a device can load a website.",
+        "line_still_amber": "The provider line is not reaching the router. Continue to step R200-S3.",
+        "power_still_off": "The unit is not powering on at all. This is beyond what can be resolved here - hand over to a human representative.",
+        "no_power_button_found": "If the customer cannot find a power button, the unit may not be an R200. Re-confirm the model before continuing."
+      }
+    },
+    {
+      "step_id": "R200-S3",
+      "title": "Reseat the line cable at the rear WAN port",
+      "order": 3,
+      "applies_when": "The Line light is solid amber, meaning no provider signal is reaching the router.",
+      "prerequisites": [
+        "The Power light is confirmed white, so the unit itself is running.",
+        "A power cycle (R200-S2) has already been attempted."
+      ],
+      "warnings": [
+        "Only the line cable at the WAN port should be touched. Leave the power cable and any device cables connected.",
+        "The R200's WAN port is the single blue port, separate from the four grey LAN ports. Reseating a grey LAN cable will not fix a Line light fault.",
+        "Do not attempt to open, rewire, or repair the wall socket. If the socket is loose, cracked, or damaged, stop and hand over to a human representative."
+      ],
+      "customer_instruction": "An amber Line light means the signal isn't reaching the router, so let's check that cable. On the back of the R200 there are five network ports - four grey ones and a single blue one labelled WAN. Find the cable in the blue WAN port, unplug it, check the plastic clip on the end isn't snapped off, and push it firmly back into the blue port until it clicks. Do the same at the wall socket end. Then tell me what colour the Line light is now.",
+      "expected_result": "The Line light changes from amber to pulsing amber and then to white within about a minute.",
+      "result_meanings": {
+        "line_turns_white": "The line connection was loose and is now restored.",
+        "line_stays_amber": "The fault is likely on the provider line outside the home. This is beyond what can be resolved here - hand over to a human representative.",
+        "clip_broken": "The cable itself needs replacing. Hand over to a human representative to arrange it.",
+        "cable_was_in_grey_port": "The line cable was in the wrong port. Having moved it to the blue WAN port, allow a minute and check the Line light again."
+      }
+    },
+    {
+      "step_id": "R200-S4",
+      "title": "Check the two Wi-Fi bands and reconnect the device",
+      "order": 4,
+      "applies_when": "The Power and Line lights are white (the router is online) but a specific device cannot connect, or one of the two band lights is off.",
+      "prerequisites": [
+        "Power and Line lights are confirmed white.",
+        "The customer has the Wi-Fi password, printed on the rear sticker alongside the model number."
+      ],
+      "warnings": [
+        "Do not ask the customer to read their Wi-Fi password aloud or type it into the chat. They only need to enter it on their own device.",
+        "Do not advise turning off Wi-Fi security, setting an open network, or hiding the network name.",
+        "Do not advise permanently disabling either band as a workaround."
+      ],
+      "customer_instruction": "The router is online, so this looks like a device or band issue. The R200 broadcasts two networks - your name ending in '-2.4G' and one ending in '-5G'. The 5G one is faster but doesn't travel as far, and some older devices can't see it at all. On the device that's struggling, open Wi-Fi settings, forget both networks if they're listed, then connect to the one ending in '-2.4G' and enter the password from the rear sticker. Does it connect?",
+      "expected_result": "The device connects to the 2.4G network and can load a website.",
+      "result_meanings": {
+        "connects": "The issue is resolved for that device.",
+        "connects_on_24_only": "Expected behaviour for older devices. The 5G band is out of range or unsupported by that device - this is not a fault.",
+        "wrong_password_error": "The password may have been changed from the printed default. Hand over to a human representative to verify the account's current credentials.",
+        "neither_network_listed": "The router is not broadcasting despite healthy lights. This is beyond what can be resolved here - hand over to a human representative."
+      }
+    }
+  ],
+
+  "out_of_scope": [
+    "Factory reset via the recessed pinhole button.",
+    "Any change to Wi-Fi security settings, including disabling encryption or hiding the network.",
+    "Permanently disabling either the 2.4GHz or 5GHz band.",
+    "Firmware updates, companion-app account changes, or configuration page changes.",
+    "Any electrical work, rewiring, or opening of the router casing or wall socket.",
+    "Diagnosing faults on the provider line outside the property."
+  ]
+}

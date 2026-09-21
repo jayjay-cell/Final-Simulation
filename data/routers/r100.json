@@ -1,0 +1,134 @@
+{
+  "_synthetic_notice": "SYNTHETIC DATA - NOT REAL. This document describes a fictional router model for a fictional ISP, generated for an interview practice project. It is not real product documentation and must not be used to service any actual hardware.",
+
+  "doc_id": "KB-RTR-R100",
+  "version": "3.2",
+  "approval_status": "approved",
+  "approved_for_customer_use": true,
+  "last_reviewed": "2026-07-14",
+  "supported_model": "R100",
+
+  "display_name": "HomeLink R100",
+  "description": "Entry-level single-band home router issued to standard residential plans between 2021 and 2024.",
+
+  "identification": {
+    "summary": "The R100 is a small white box with a single status light on the front and two fixed black antennas at the back.",
+    "customer_facing_question": "Could you take a look at your router for me? On the R100 the model number is printed on a white sticker on the underside, starting with 'R100-'. It's a white box with two fixed antennas and a single round status light on the front.",
+    "cues": [
+      "White sticker on the underside of the unit, model line reads 'R100-HL' followed by the serial number.",
+      "Exactly ONE round status light on the front panel (the R200 has four small lights in a row).",
+      "Two black antennas at the rear that do not detach.",
+      "No USB port anywhere on the unit."
+    ],
+    "distinguishing_from_other_models": "If the customer reports four lights in a row, or a detachable antenna, or a USB port on the back, it is not an R100 - most likely an R200."
+  },
+
+  "known_symptoms": [
+    "No internet on any device, status light solid red",
+    "No internet on any device, status light off entirely",
+    "Wi-Fi network name not appearing in the device list",
+    "Connection drops repeatedly every few minutes",
+    "Slow speeds on wireless only, wired connection is fine"
+  ],
+
+  "status_light_reference": {
+    "solid_green": "Online and working normally.",
+    "blinking_green": "Starting up, or negotiating a connection. Normal for up to 2 minutes after power-on.",
+    "solid_red": "No signal reaching the router from the provider line.",
+    "blinking_red": "Router is online but cannot authenticate with the provider network.",
+    "off": "No power reaching the unit."
+  },
+
+  "troubleshooting_steps": [
+    {
+      "step_id": "R100-S1",
+      "title": "Check the power and cable seating",
+      "order": 1,
+      "applies_when": "Always applicable as a first step, and especially when the status light is off entirely.",
+      "prerequisites": [
+        "Customer is physically near the router and can see and reach it."
+      ],
+      "warnings": [
+        "Only handle the plug and the cable ends. Do not open the router casing.",
+        "If the customer reports any burning smell, visible damage, or a hot unit, stop and hand over to a human representative immediately."
+      ],
+      "customer_instruction": "Let's start with the simplest thing. Check that the black power cable is pushed firmly into the back of the router and into the wall socket, and that the wall socket is switched on. Then look at the round light on the front - can you tell me what colour it is, or if it's off completely?",
+      "expected_result": "The status light shows some colour - green, blinking green, or red.",
+      "result_meanings": {
+        "light_now_green": "The router has power and is online. The issue is likely resolved.",
+        "light_red_or_blinking": "The router has power but no working connection. Continue to the next step.",
+        "light_still_off": "No power is reaching the unit. Continue to the next step to try a different socket."
+      }
+    },
+    {
+      "step_id": "R100-S2",
+      "title": "Power cycle the router",
+      "order": 2,
+      "applies_when": "The router has power (light is on in any colour) but there is no internet access. Skip if the light is off entirely and the power has already been checked.",
+      "prerequisites": [
+        "Step R100-S1 has been completed, or the customer has already confirmed the router has power."
+      ],
+      "warnings": [
+        "This will briefly disconnect everyone in the home, including anyone on a call or in a meeting. Mention this before asking the customer to proceed.",
+        "Do not use the small recessed reset pinhole. That performs a full factory reset and is out of scope for this conversation."
+      ],
+      "customer_instruction": "Next let's give the router a proper restart. Unplug the power cable from the back of the router, wait a full 30 seconds - that part matters, it lets the connection fully clear - then plug it back in. It takes about 2 minutes to come back up. The light will blink green while it starts, then settle on solid green when it's ready. Just so you know, everyone in the house will drop offline briefly while this happens.",
+      "expected_result": "After roughly 2 minutes the status light settles on solid green and devices reconnect automatically.",
+      "result_meanings": {
+        "solid_green": "The connection has been restored. Ask the customer to confirm a device can now load a website.",
+        "still_red": "The provider line is not reaching the router. Continue to the next step.",
+        "still_blinking_after_5_minutes": "The router cannot complete its connection. Continue to the next step."
+      }
+    },
+    {
+      "step_id": "R100-S3",
+      "title": "Check the line cable at the wall socket",
+      "order": 3,
+      "applies_when": "The status light is solid red or has stayed blinking for more than 5 minutes after a restart, indicating no signal is reaching the router.",
+      "prerequisites": [
+        "The router has confirmed power.",
+        "A power cycle (R100-S2) has already been attempted."
+      ],
+      "warnings": [
+        "Only the grey line cable should be unplugged and reseated. Leave the power cable connected.",
+        "Do not attempt to open, rewire, or repair the wall socket itself. If the socket is loose, cracked, or damaged, stop and hand over to a human representative."
+      ],
+      "customer_instruction": "Let's check the line coming into the router. There should be a thinner grey cable running from the wall socket to the port on the back of the router labelled 'LINE'. Unplug it at both ends, check the little plastic clip on each end isn't snapped off, then push it firmly back in at both ends until you hear a click. Then have a look at the front light again - what colour is it now?",
+      "expected_result": "The status light changes from red to blinking green and then to solid green within about 2 minutes.",
+      "result_meanings": {
+        "turns_green": "The line connection was loose and is now restored.",
+        "stays_red": "The fault is likely on the provider line outside the home. This is beyond what can be resolved here - hand over to a human representative.",
+        "clip_broken": "The cable itself needs replacing. Hand over to a human representative to arrange it."
+      }
+    },
+    {
+      "step_id": "R100-S4",
+      "title": "Reconnect the device to the Wi-Fi network",
+      "order": 4,
+      "applies_when": "The router status light is solid green (so the router itself is online) but a specific device still cannot get online, or the network name is missing from that device's list.",
+      "prerequisites": [
+        "The router status light is confirmed solid green.",
+        "The customer has the Wi-Fi password, which is printed on the same underside sticker as the model number."
+      ],
+      "warnings": [
+        "Do not ask the customer to read their Wi-Fi password aloud or type it into the chat. They only need to enter it on their own device.",
+        "Do not advise turning off Wi-Fi security or setting an open network under any circumstances."
+      ],
+      "customer_instruction": "The router itself looks healthy, so let's reconnect that one device. On the device, open the Wi-Fi settings, find your network name - it's on the underside sticker, starting with 'HomeLink-' - and if it's already listed, choose to forget the network first, then select it again and enter the Wi-Fi password from that same sticker. Does it connect?",
+      "expected_result": "The device connects to the network and can load a website.",
+      "result_meanings": {
+        "connects": "The issue is resolved for that device.",
+        "wrong_password_error": "The password may have been changed from the printed default. Hand over to a human representative to verify the account's current credentials.",
+        "network_not_listed": "The router is not broadcasting despite showing green. This is beyond what can be resolved here - hand over to a human representative."
+      }
+    }
+  ],
+
+  "out_of_scope": [
+    "Factory reset via the recessed pinhole button.",
+    "Any change to Wi-Fi security settings, including disabling encryption.",
+    "Firmware updates or configuration page changes.",
+    "Any electrical work, rewiring, or opening of the router casing or wall socket.",
+    "Diagnosing faults on the provider line outside the property."
+  ]
+}
